@@ -24,8 +24,10 @@ def login():
             error =  "Incorrect password"
             return render_template("login.html", error=error)
         login_user(user,form.remember.data)
-        return redirect(url_for("main.index"))
-    return render_template("login.html")
+        return redirect(request.args.get('next') or url_for("main.index"))
+
+    title = "Minute Pitch Login"
+    return render_template("auth/login.html",login_form=login_form,title=title)
 
 @auth.route("/sign-up",methods=["GET","POST"])
 def signup():
