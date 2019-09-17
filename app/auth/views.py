@@ -1,29 +1,35 @@
-from flask  import render_template, request, redirect, url_for
-from flask_login import login_user, logout_user
+# from flask  import render_template, request, redirect, url_for
+from flask  import render_template, request, redirect, url_for, flash
+from flask_login import login_user, logout_user, login_required
 from . import auth
 from app.models import User
+from .forms import LoginForm, ReistrationForm
+# from ..import db, main
+from ..import db
 
-@auth.route('/login', methods=["PITCH","GET"])
+@auth.route('/login', methods=["POST","GET"])
 def login():
-    if request.method == "PITCH":
+    form = LoginForm
+    if request.method == "POST":
         form = request.form
         username = form.get("username")
         password = form.get("password")
-        user =  User.query.filter_by(username=username).first()
+        email = form.get("email")
+        user =  User.query.filter_by(username=username,email=form.email.data).first()
         if user == None:
-            error =  "user with that username does not exist"
+            error =  "username does not exist"
             return render_template("login.html", error=error)
         is_correct_password = user.check_password(password)
         if is_correct_password==False:
             error =  "Incorrect password"
             return render_template("login.html", error=error)
-        login_user(user)
+        login_user(user,form.remember.data)
         return redirect(url_for("main.index"))
     return render_template("login.html")
 
-@auth.route("/sign-up",methods=["GET","PITCH"])
+@auth.route("/sign-up",methods=["GET","POST"])
 def signup():
-    if request.method == "PITCH":
+    if request.method == "POST":
         form = request.form 
         username = form.get("username")
         email = form.get("email")
