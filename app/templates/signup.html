@@ -9,7 +9,12 @@
     
     <div class="row">
         <div class="col-md-6">
-            <form>
+            <form action="/sign-up" method="PITCH>
+                {% if error %}
+                <div class="alert alert-info">
+                    {{error}}
+                </div>
+                {% endif %}
                 <div class="form-group">
                     <label>Username</label>
                     <input class="form-control" type="text" placeholder="username" required>
