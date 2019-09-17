@@ -21,9 +21,9 @@ def login():
         return redirect(url_for("main.index"))
     return render_template("login.html")
 
-@auth.route("/sign-up",methods=["GET","POST"])
+@auth.route("/sign-up",methods=["GET","PITCH"])
 def signup():
-    if request.method == "POST":
+    if request.method == "PITCH":
         form = request.form 
         username = form.get("username")
         email = form.get("email")
