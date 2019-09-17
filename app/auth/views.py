@@ -14,8 +14,7 @@ def login():
         form = request.form
         username = form.get("username")
         password = form.get("password")
-        email = form.get("email")
-        user =  User.query.filter_by(username=username,email=form.email.data).first()
+        user =  User.query.filter_by(username=username).first()
         if user == None:
             error =  "username does not exist"
             return render_template("login.html", error=error)
@@ -31,6 +30,7 @@ def login():
 
 @auth.route("/sign-up",methods=["GET","POST"])
 def signup():
+    form = SignupForm
     if request.method == "POST":
         form = request.form 
         username = form.get("username")
