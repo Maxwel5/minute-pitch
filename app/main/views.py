@@ -68,3 +68,5 @@ def user_pitches(username):
     user = User.query.filter_by(username=username).first()
     pitches = Pitch.query.filter_by(user_id = user.id).all()
     pitches_count = Pitch.count_pitches(username)
+
+    return render_template("profile/pitches.html", user=user,pitches=pitches,pitches_count=pitches_count)
