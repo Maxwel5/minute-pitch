@@ -15,6 +15,23 @@ def index():
     sports_pitches = Pitch.get_pitches('sports')
     return render_template('index.html', title=title, bootcamp = bootcamp_pitches, trip = trip_pitches, sports = sports_pitches)
 
+@main.route('/pitch/new', methods = ['GET','POST'])
+@login_required
+def new_pitch():
+    pitch_form = PitchForm()
+    if pitch_form.validate_on_submit():
+        category = pitch_form.category.data
+        pitch = pitch_form.text.data
+        title = pitch_form.title.data
+
+        new_pitch = Pitch(pitch_title=title,pitch_content=pitch,category=category,user=current_user,likes=0,dislikes=0)
+
+        new_pitch.save_pitch()
+        return redirect(url_for('.index'))
+
+    title = 'New pitch'
+    return render_template('pitch.html',title = title,pitch_form=pitch_form )
+
 @main.route('/bootcamp/pitches')
 def bootcamp():
     pitches = Pitch.get_pitches(bootcamp)
