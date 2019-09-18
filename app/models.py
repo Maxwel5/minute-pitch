@@ -13,8 +13,8 @@ class User(UserMixin, db.Model):
     password = db.Column(db.String(255), nullable=False)
     bio = db.Column(db.String(4800))
     profile_pic_path = db.Column(db.String)
-    pitch = db.relationship('Pitches', backref='author', lazy='dynamic')
-    comments = db.relationship('Comments', backref='author', lazy='dynamic'
+    pitch = db.relationship('Pitches', backref='user', lazy='dynamic')
+    comments = db.relationship('Comments', backref='user', lazy='dynamic'
 
     def save(self):
         db.session.add(self)
@@ -37,3 +37,17 @@ class User(UserMixin, db.Model):
 @login_manager.user_loader
 def user_loader(user_id):
     return User.query.get(user_id)
+
+class Pitch(db.Model):
+    __tablename__ = 'pitches'
+
+    id = db.Column(db.Integer,primary_key = True)
+    title = db.Column(db.String(255))
+    pitch_title = db.Column(db.String(255))
+    pitch_content = db.Column(db.String(800))
+    category = db.Column(db.String(255))
+    user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
+    upvote = db.Column(db.Integer)
+    downvote = db.Column(db.Integer)
+
+    comments = db.relationship('Comment',backref =  'pitch_id',lazy = "dynamic")
