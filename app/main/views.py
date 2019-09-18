@@ -1,8 +1,8 @@
-from flask import render_template,request,redirect
+from flask import render_template,request,redirect,url_for
 from flask_login import login_required,current_user
 from . import main
 from ..models import User,Pitch,Comment
-from .forms import CommentForm
+from .forms import CommentForm,PitchForm
 
 @main.route('/')
 @login_required
@@ -14,6 +14,17 @@ def index():
     trip_piches = Pitch.get_pitches('trip')
     sports_pitches = Pitch.get_pitches('sports')
     return render_template('index.html', title=title, bootcamp = bootcamp_pitches, trip = trip_pitches, sports = sports_pitches)
+
+@main.route('/user/<uname>')
+def profile(username):
+    user = User.query.filter_by(username = username).first()
+
+    if user is None:
+        abort(404)
+
+    return render_template("profile/profile.html", user = user, pitches = pitches_count)
+    pitches_count = Pitch.count_pitches(username)
+
 
 @main.route('/pitch/new', methods = ['GET','POST'])
 @login_required
