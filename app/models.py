@@ -4,10 +4,15 @@ from . import db, login_manager
 
 class User(UserMixin, db.Model):
     __tablename__="users"
+    
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(255), nullable=False, unique=True)
+    firstname = db.Column(db.String(255), nullable=False, unique=True)
+    lastname = db.Column(db.String(255), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     password = db.Column(db.String(255), nullable=False)
+    bio = db.Column(db.String(4800))
+    profile_pic_path = db.Column(db.String)
 
     def save(self):
         db.session.add(self)
