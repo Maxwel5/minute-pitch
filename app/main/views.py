@@ -1,6 +1,8 @@
-from flask import render_template
-from flask_login import login_required
+from flask import render_template,request,redirect
+from flask_login import login_required,current_user
 from . import main
+from ..models import User,Pitch,Comment
+from .forms import CommentForm
 
 @main.route('/')
 @login_required
@@ -47,3 +49,16 @@ def pitch(id):
         db.session.commit()
 
         return redirect("/pitch/{pitch_id}".format(pitch_id=pitch.id))
+
+    comment_form = CommentForm()
+    if comment_form.validate_on_submit():
+        comment = comment_form.text.data
+
+        new_comment = Comment(comment = comment,user = current_user,pitch_id = pitch)
+
+        new_comment.save_comment()
+
+
+    comments = Comment.get_comments(pitch)
+
+    return render_template("pitch.html", pitch = pitch, comment_form = comment_form, comments = comments)
