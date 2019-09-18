@@ -66,3 +66,14 @@ class Pitch(db.Model):
         pitch = Pitch.query.filter_by(id=id).first()
 
         return pitch
+
+    @classmethod
+    def count_pitches(cls,username):
+        user = User.query.filter_by(username=username).first()
+        pitches = Pitch.query.filter_by(user_id=user.id).all()
+
+        pitches_count = 0
+        for pitch in pitches:
+            pitches_count += 1
+
+        return pitches_count
