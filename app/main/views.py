@@ -27,3 +27,23 @@ def trip():
 def sports():
     pitches = Pitch.get_pitches(sports)
     return render_template('sports.html', title = title, pitches = pitches)
+
+@main.route('/pitch/<int:id>', methods = ['GET', 'POST'])
+def pitch(id):
+    pitch = Pitch.get_pitch(id)
+
+    if request.args.get('upvote'):
+        pitch.upvote = pitch.upvote + 1
+
+        db.session.add(pitch)
+        db.session.commit()
+
+        return redirect("/pitch/{pitch_id}".f(pitch_id=pitch.i))
+
+    elif request.args.get("downvote"):
+        pitch.downvote = pitch.downvote + 1
+
+        db.session.add(pitch)
+        db.session.commit()
+
+        return redirect("/pitch/{pitch_id}".format(pitch_id=pitch.id))
