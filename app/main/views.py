@@ -15,7 +15,18 @@ def index():
     sports_pitches = Pitch.get_pitches('sports')
     return render_template('index.html', title=title, bootcamp = bootcamp_pitches, trip = trip_pitches, sports = sports_pitches)
 
-@main.route('/user/<uname>')
+@main.route('/user/<uname>/update/pic',methods= ['POST'])
+@login_required
+def update_pic(username):
+    user = User.query.filter_by(username = username).first()
+    if 'photo' in request.files:
+        filename = photos.save(request.files['photo'])
+        path = f'photos/{filename}'
+        user.profile_pic_path = path 
+        db.session.commit()
+    return redirect(url_for('main.profile',username=username))
+
+@main.route('/user/<username>')
 def profile(username):
     user = User.query.filter_by(username = username).first()
 
