@@ -13,6 +13,8 @@ class User(UserMixin, db.Model):
     password = db.Column(db.String(255), nullable=False)
     bio = db.Column(db.String(4800))
     profile_pic_path = db.Column(db.String)
+    pitch = db.relationship('Pitches', backref='author', lazy='dynamic')
+    comments = db.relationship('Comments', backref='author', lazy='dynamic'
 
     def save(self):
         db.session.add(self)
