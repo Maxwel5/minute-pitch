@@ -62,3 +62,9 @@ def pitch(id):
     comments = Comment.get_comments(pitch)
 
     return render_template("pitch.html", pitch = pitch, comment_form = comment_form, comments = comments)
+
+@main.route('/user/<username>/pitches')
+def user_pitches(username):
+    user = User.query.filter_by(username=username).first()
+    pitches = Pitch.query.filter_by(user_id = user.id).all()
+    pitches_count = Pitch.count_pitches(username)
