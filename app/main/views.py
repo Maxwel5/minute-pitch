@@ -26,6 +26,25 @@ def profile(username):
     pitches_count = Pitch.count_pitches(username)
 
 
+@main.route('/user/<username>/update',methods = ['GET','POST'])
+@login_required
+def update_profile(username):
+    user = User.query.filter_by(username = username).first()
+    if user is None:
+        abort(404)
+
+    form = UpdateProfile()
+
+    if form.validate_on_submit():
+        user.bio = form.bio.data
+
+        db.session.add(user)
+        db.session.commit()
+
+        return redirect(url_for('.profile',username=user.username))
+
+    return render_template('profile/update.html',form =form)
+
 @main.route('/pitch/new', methods = ['GET','POST'])
 @login_required
 def new_pitch():
