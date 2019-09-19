@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as macro %}
+
+{% block content %}
+{{ super() }}
+
+<link href="fonts">
+<div class="container">
+    <h2>Trip Pitches</h2>
+    <a href="{{url_for('main.new_pitch')}}">
+        <br>
+        Extra new pitch
+    </a>
+    <div>
+        {{macro.displayPitches(pitches)}} <a href="{{url_for('main.new_comment')}}">Comment</a>
+    </div>
+</div>
+{% endblock %}
