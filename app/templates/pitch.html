@@ -5,6 +5,14 @@
 {% block styles %}
     {{ super() }}
 {% endblock %}
+
+{% block content %}
+    <div class="container">
+        <large>{{pitch.pitch_title}}</large>
+        <hr>
+        <p>{{pitch.pitch_content}}</p>
+    </div>
+{% endblock %}
 <template id="post-template">
 	<li class="list-group-item">
 		<i class="glyphicon glyphicon-chevron-up" @click="upvote"></i>
