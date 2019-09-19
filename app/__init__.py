@@ -1,12 +1,13 @@
 from flask import Flask
+# from flask import config
 from flask_bootstrap import Bootstrap
 from config import Config
 from flask_login import login_manager,LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from flask_uploads import UploadSet,configure_uploads,IMAGES
 from flask_mail import Mail
+import app
 
-bootstrap = Bootstrap()
 db = SQLAlchemy(app)
 mail = Mail()
 photos = UploadSet('photos',IMAGES)
