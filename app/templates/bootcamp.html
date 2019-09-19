@@ -6,13 +6,15 @@
 
 <link href="fonts">
 <div class="container">
-    <h2>Bootcamp Pitches</h2>
+    <div class="card">
+        <h2>Bootcamp Pitches</h2>
     <a href="{{url_for('main.new_pitch')}}">
         <br>
         Extra new pitch
     </a>
     <div>
         {{macro.displayPitches(pitches)}} <a href="{{url_for('main.new_comment')}}">Comment</a>
+    </div>
     </div>
 </div>
 {% endblock %}
