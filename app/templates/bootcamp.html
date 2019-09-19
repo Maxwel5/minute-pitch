@@ -4,7 +4,7 @@
 {% block content %}
 {{ super() }}
 
-<link href="fonts">
+<link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond&display=swap" rel="stylesheet">
 <div class="container">
     <div class="card">
         <h2>Bootcamp Pitches</h2>
@@ -13,7 +13,7 @@
         Extra new pitch
     </a>
     <div>
-        {{macro.displayPitches(pitches)}} <a href="{{url_for('main.new_comment')}}">Comment</a>
+        {{macro.displayPitches(pitches)}} <a href="{{url_for('main.new_pitch')}}">Comment</a>
     </div>
     </div>
 </div>
