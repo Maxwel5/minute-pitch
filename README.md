@@ -10,7 +10,7 @@ To setup this website:
 * Write this command `./manage.py`
 * To edit write `code .` or `atom .`
 
-## Requests
+## Requests Procedure
 Below are the necessity to achieve the full functionality of the project:
 * Python v 3.6
 * Install Flask
@@ -20,3 +20,9 @@ Below are the necessity to achieve the full functionality of the project:
 * install flask-migrate
 * Use visual studio editor
 * Link:
+
+## Terminologies used
+* python3.6
+* flask
+* html
+* bootstrap
