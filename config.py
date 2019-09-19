@@ -10,8 +10,6 @@ class ProdConfig(Config):
 
 class DevConfig(Config):
 
-   
-    # ENV = 'development'
     SECRET_KEY = 'JHFEIEWHGOIHWEOIUGHWEPIUHP'
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:12345@localhost/pitches'
     DEBUG = True

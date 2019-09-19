@@ -6,7 +6,6 @@ from .. import db,photos
 from .forms import CommentForm,PitchForm,UpdateProfile
 
 @main.route('/')
-# @login_required
 def index():
 
     title = 'Home - Just Pitch Out'

@@ -3,10 +3,10 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <!-- displaying  Username-->
+        
         <h3> {{user.username| capitalize}} </h3>
         <hr>
-        <!--Display profile photo-->
+        
         <div class="col-md-3">
             <div class="thumbnail">
                 {% if user.profile_pic_path %}
@@ -26,14 +26,12 @@
         <div class="col-md-9">
             <p>Name: {{user.firstname}} {{user.lastname}} </p>
             <p>No of piches: {{pitches}}</p>
-            <!-- <p>Date joined: {{date}}</p> -->
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
           <h3> Bio </h3>
 
-          <!--Displaying user bio-->
           {% if user.bio %}
             <p> {{user.bio}}</p>
           {%else%}

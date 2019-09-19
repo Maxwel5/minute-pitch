@@ -6,7 +6,6 @@
 
 <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond&display=swap" rel="stylesheet">
 <div class="container" style="font-family: 'Cormorant Garamond', serif; font-size: 20px; background-color:rgba(12, 56, 105, 0.342); color: #c7efcf">
-    <!-- <div class="card"> -->
         <h2>Sports Pitches</h2>
         <a href="{{url_for('main.new_pitch')}}">
         <br>
@@ -15,6 +14,5 @@
         <div>
             {{macro.displayPitches(pitches)}} <a href="{{url_for('main.new_pitch')}}">Comment</a>
         </div>
-    <!-- </div> -->
 </div>
 {% endblock %}
