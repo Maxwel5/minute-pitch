@@ -1,0 +1,15 @@
+{% extends 'base.html'%}
+{% import 'macros.html' as macro%}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block styles %}
+    {{ super() }}
+{% endblock %}
+<template id="post-template">
+	<li class="list-group-item">
+		<i class="glyphicon glyphicon-chevron-up" @click="upvote"></i>
+		<span class="label label-primary">{{ votes }}</span>
+		<i class="glyphicon glyphicon-chevron-down" @click="downvote"></i>
+		<a>{{ post.title }}</a>
+	</li>
+</template>
