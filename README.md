@@ -1,11 +1,14 @@
 # MINUTE PITCH
 
+## Author
+Maxwel5, a student passionated to learn and implement programming skills
+
 ## Description
 This is aa application where a user can see the pitches created by others, upvote or downvote, signed in to leave a comment, receive an invitation email once signed up, view pitches in the profile page, comment on different pitches, submit a pitch in any category and view diffent categories.
 
 ## Setup and Installation
 To setup this website:
-* Open terminal and type ` `
+* Open terminal and type `https://github.com/Maxwel5/minute-pitch.git`
 * Open the folder usig the followig command `cd News-highlight`
 * Write this command `./manage.py`
 * To edit write `code .` or `atom .`
