@@ -6,13 +6,13 @@ from .. import db,photos
 from .forms import CommentForm,PitchForm,UpdateProfile
 
 @main.route('/')
-@login_required
+# @login_required
 def index():
 
     title = 'Home - Just Pitch Out'
 
-    bootcamp_piches = Pitch.get_pitches('bootcamp')
-    trip_piches = Pitch.get_pitches('trip')
+    bootcamp_pitches = Pitch.get_pitches('bootcamp')
+    trip_pitches = Pitch.get_pitches('trip')
     sports_pitches = Pitch.get_pitches('sports')
     return render_template('index.html', title=title, bootcamp = bootcamp_pitches, trip = trip_pitches, sports = sports_pitches)
 

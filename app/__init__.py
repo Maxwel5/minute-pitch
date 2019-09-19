@@ -10,6 +10,7 @@ from flask_mail import Mail
 app =  Flask(__name__)
 db = SQLAlchemy(app)
 mail = Mail()
+bootstrap = Bootstrap()
 photos = UploadSet('photos',IMAGES)
 login_manager = LoginManager(app)
 login_manager.login_view = "auth.login"
@@ -20,5 +21,6 @@ def create_app(config_name):
     from .auth import auth as auth_blueprint
     app.register_blueprint(main_blueprint)
     app.register_blueprint(auth_blueprint,url_prefix = '/authenticate')
-    
+    bootstrap.init_app(app)
+
     return app

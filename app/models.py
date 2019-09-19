@@ -7,14 +7,14 @@ class User(UserMixin, db.Model):
     
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(255), nullable=False, unique=True)
-    firstname = db.Column(db.String(255), nullable=False, unique=True)
-    lastname = db.Column(db.String(255), nullable=False, unique=True)
+    firstname = db.Column(db.String(255))
+    lastname = db.Column(db.String(255))
     email = db.Column(db.String(255), nullable=False, unique=True)
     password = db.Column(db.String(255), nullable=False)
     bio = db.Column(db.String(4800))
     profile_pic_path = db.Column(db.String)
-    pitch = db.relationship('Pitches', backref='user', lazy='dynamic')
-    comments = db.relationship('Comments', backref='user', lazy='dynamic')
+    pitch = db.relationship('Pitch', backref='user', lazy='dynamic')
+    comments = db.relationship('Comment', backref='user', lazy='dynamic')
 
     def save(self):
         db.session.add(self)
@@ -26,7 +26,7 @@ class User(UserMixin, db.Model):
 
     def set_password(self, password):
         password_hash= generate_password_hash(password)
-        self.password=pass_hash
+        self.password=password
 
     def check_password(self,password):
         return check_password_hash(self.password, password)
