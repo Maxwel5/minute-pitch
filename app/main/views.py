@@ -72,22 +72,22 @@ def new_pitch():
         return redirect(url_for('.index'))
 
     title = 'New pitch'
-    return render_template('pitch.html',title = title,pitch_form=pitch_form )
+    return render_template('new_pitch.html',title = title,pitch_form=pitch_form )
 
 @main.route('/bootcamp/pitches')
 def bootcamp():
-    pitches = Pitch.get_pitches(bootcamp)
-    return render_template('bootcamp.html', title = title, pitches = pitches)
+    pitches = Pitch.get_pitches('bootcamp')
+    return render_template('bootcamp.html', pitches = pitches)
 
-@main.route('/trip/pitches')
-def trip():
-    pitches = Pitch.get_pitches(trip)
-    return render_template('trip.html', title = title, pitches = pitches)
+@main.route('/trips/pitches')
+def trips():
+    pitches = Pitch.get_pitches('trips')
+    return render_template('trips.html', pitches = pitches)
 
 @main.route('/sports/pitches')
 def sports():
-    pitches = Pitch.get_pitches(sports)
-    return render_template('sports.html', title = title, pitches = pitches)
+    pitches = Pitch.get_pitches('sports')
+    return render_template('sports.html', pitches = pitches)
 
 @main.route('/pitch/<int:id>', methods = ['GET', 'POST'])
 def pitch(id):
