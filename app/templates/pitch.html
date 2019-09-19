@@ -20,12 +20,12 @@
                 <span class="label label-primary">{{ downvotes }}</span></a>
         </span>
     </div>
+    <div>
+        <p>Comments</p>
+        <hr>
+        {% if current_user.is_authenticated %}
+            {{ wtf.quick_form(comment_form) }}
+        {%endif%}
+        {{macro.displayComments(comments)}}
+    </div>
 {% endblock %}
-<template id="post-template">
-	<li class="list-group-item">
-		<i class="glyphicon glyphicon-chevron-up" @click="upvote"></i>
-		<span class="label label-primary">{{ votes }}</span>
-		<i class="glyphicon glyphicon-chevron-down" @click="downvote"></i>
-		<a>{{ post.title }}</a>
-	</li>
-</template>
