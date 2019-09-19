@@ -11,6 +11,11 @@
         <large>{{pitch.pitch_title}}</large>
         <hr>
         <p>{{pitch.pitch_content}}</p>
+        <span>
+            <a href="/pitch/{{pitch.id}}?upvote=1">
+                <i class="glyphicon glyphicon-chevron-up" @click="upvote"></i>
+                <span class="label label-primary">{{ upvotes }}</span></a>
+        </span>
     </div>
 {% endblock %}
 <template id="post-template">
