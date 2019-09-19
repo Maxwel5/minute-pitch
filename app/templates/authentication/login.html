@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
 
 {% block content %}
 {{ super() }}
 <h2>Login</h2>
-<div class="container">
+<!-- <div class="container">
     <div class="row">
         <div class="col-md-6">
             <form action="/login" method="PITCH">
@@ -24,5 +25,14 @@
             </form>
         </div>
     </div>
+</div> -->
+
+<div class="row">
+    <div class="col-md-2"></div>
+        <div class="col-md-4">
+            {{wtf.quick_form(login_form)}}
+        </div>
+        <div class="col-md-6"></div>
+    
 </div>
 {% endblock %}

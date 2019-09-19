@@ -15,23 +15,35 @@ def home():
 
 @auth.route('/login', methods=["POST","GET"])
 def login():
-    form = LoginForm
-    if request.method == "POST":
-        form = request.form
-        username = form.get("username")
-        password = form.get("password")
-        user =  User.query.filter_by(username=username).first()
-        if user == None:
-            error =  "username does not exist"
-            return render_template("authentication/login.html", error=error)
-        is_correct_password = user.check_password(password)
-        if is_correct_password==False:
-            error =  "Incorrect password"
-            return render_template("authentication/login.html", error=error)
-        login_user(user,form.remember.data)
-        return redirect(request.args.get('next') or url_for("main.index"))
-
+    form = LoginForm()
     title = "Minute Pitch Login"
+    if form.validate_on_submit():
+        user = User.query.filter_by(email = form.email.data).first()
+        if user != None and form.password.data == user.password:
+            login_user(user)
+            return redirect(request.args.get('next') or url_for("main.index"))
+        else:
+            return render_template("authentication/login.html",login_form=form,title=title)
+            
+
+            
+            
+    # if request.method == "POST":
+    #     form = request.form
+    #     username = form.get("username")
+    #     password = form.get("password")
+    #     user =  User.query.filter_by(username=username).first()
+    #     if user == None:
+    #         error =  "username does not exist"
+    #         return render_template("authentication/login.html", error=error)
+    #     is_correct_password = user.check_password(password)
+    #     if is_correct_password==False:
+    #         error =  "Incorrect password"
+    #         return render_template("authentication/login.html", error=error)
+    #     login_user(user,form.remember.data)
+    #     return redirect(request.args.get('next') or url_for("main.index"))
+
+    
     return render_template("authentication/login.html",login_form=form,title=title)
 
 @auth.route("/sign-up",methods=["GET","POST"])
