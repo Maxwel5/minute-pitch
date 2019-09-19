@@ -5,16 +5,17 @@
 {{ super() }}
 
 <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond&display=swap" rel="stylesheet">
-<div class="container text-right" style="font-family: 'Cormorant Garamond', serif; background-color:#333745; color: #c7efcf">
-    <div class="card">
+<div class="container" style="font-family: 'Cormorant Garamond', serif; background-color:#333745; color: #c7efcf">
+    <!-- <div class="card"> -->
         <h2>Bootcamp Pitches</h2>
-    <a href="{{url_for('main.new_pitch')}}">
+        <a href="{{url_for('main.new_pitch')}}">
         <br>
+        <hr>
         Extra new pitch
-    </a>
-    <div>
-        {{macro.displayPitches(pitches)}} <a href="{{url_for('main.new_pitch')}}">Comment</a>
-    </div>
-    </div>
+        </a>
+        <div>
+            {{macro.displayPitches(pitches)}} <a href="{{url_for('main.new_pitch')}}">Comment</a>
+        </div>
+    <!-- </div> -->
 </div>
 {% endblock %}
