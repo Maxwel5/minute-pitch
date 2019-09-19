@@ -6,4 +6,5 @@ class PitchTest(unittest.TestCase):
     def setUp(self):
         sels.new_pitch = Pitch('test all new_pitch')
 
-    
+    def test_instance(self):
+        self.assertTrue(isinstance(self.new_pitch,))
