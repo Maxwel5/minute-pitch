@@ -30,12 +30,13 @@ def update_pic(username):
 @main.route('/user/<username>')
 def profile(username):
     user = User.query.filter_by(username = username).first()
+    pitches_count = Pitch.count_pitches(username)
 
     if user is None:
         abort(404)
 
     return render_template("profile/profile.html", user = user, pitches = pitches_count)
-    pitches_count = Pitch.count_pitches(username)
+    
 
 
 @main.route('/user/<username>/update',methods = ['GET','POST'])
