@@ -15,6 +15,9 @@
             <a href="/pitch/{{pitch.id}}?upvote=1">
                 <i class="glyphicon glyphicon-chevron-up" @click="upvote"></i>
                 <span class="label label-primary">{{ upvotes }}</span></a>
+            <a href="/pitch/{{pitch.id}}?downvotevote=1">
+                <i class="glyphicon glyphicon-chevron-up" @click="downvote"></i>
+                <span class="label label-primary">{{ downvotes }}</span></a>
         </span>
     </div>
 {% endblock %}
