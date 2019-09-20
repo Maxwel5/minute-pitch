@@ -5,6 +5,7 @@ from ..models import User,Reviews
 # from ..models import User,Pitch,Comment
 from .. import db,photos
 from .forms import CommentForm,PitchForm,UpdateProfile,ReviewForm
+from app.models import User,Role
 
 @main.route('/')
 def index():
