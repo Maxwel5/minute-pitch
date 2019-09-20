@@ -7,9 +7,10 @@ class User(UserMixin, db.Model):
     
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(255), index = True, nullable=False, unique=True)
-    firstname = db.Column(db.String(255))
-    lastname = db.Column(db.String(255))
+    # firstname = db.Column(db.String(255))
+    # lastname = db.Column(db.String(255))
     email = db.Column(db.String(255), index = True, nullable=False, unique=True)
+    # role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
     pass_secure = db.Column(db.String(255))
     password = db.Column(db.String(255), nullable=False)
     # password_hash = db.Column(db.String(255))
