@@ -15,10 +15,6 @@ def index():
     sports_pitches = Pitch.get_pitches('sports')
     return render_template('index.html',current_user=current_user, title=title, bootcamp = bootcamp_pitches, trip = trip_pitches, sports = sports_pitches)
 
-# @main.route('/movie/review/new/<int:id>', methods = ['GET','POST'])
-# @login_required
-# def new_review(id)
-
 @main.route('/user/<username>/update/pic',methods= ['POST'])
 @login_required
 def update_pic(username):
@@ -105,7 +101,7 @@ def pitch(id):
         db.session.add(pitch)
         db.session.commit()
 
-        return redirect("/pitch/{pitch_id}".f(pitch_id=pitch.i))
+        return redirect("/pitch/{}".format(id))
 
     elif request.args.get("downvote"):
         pitch.downvote = pitch.downvote + 1
@@ -113,11 +109,11 @@ def pitch(id):
         db.session.add(pitch)
         db.session.commit()
 
-        return redirect("/pitch/{pitch_id}".format(pitch_id=pitch.id))
+        return redirect("/pitch/{}".format(id))
 
     comment_form = CommentForm()
     if comment_form.validate_on_submit():
-        comment = comment_form.text.data
+        comment = comment_form.pitch.data
 
         new_comment = Comment(comment = comment,user = current_user,pitch_id = pitch)
 
@@ -126,7 +122,7 @@ def pitch(id):
 
     comments = Comment.get_comments(pitch)
 
-    return render_template("pitch.html", pitch = pitch, comment_form = comment_form, comments = comments)
+    return render_template("pitch.html", pitch=pitch, comment_form=comment_form, comments=comments)
 
 @main.route('/user/<username>/pitches')
 def user_pitches(username):

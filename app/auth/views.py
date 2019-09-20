@@ -5,12 +5,9 @@ from flask_login import login_user, logout_user, login_required
 from . import auth
 from app.models import User
 from .forms import LoginForm, SignupForm
-# from ..import db, main
 from ..import db
 from ..email import mail_message
-# from werkzeug.security import generate_password_hash,check_password_hash
 
-# @auth.route('/')
 @auth.route('/home')
 def home():
     return render_template('index.html')

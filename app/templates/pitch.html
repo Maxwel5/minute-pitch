@@ -14,10 +14,10 @@
         <span>
             <a href="/pitch/{{pitch.id}}?upvote=1">
                 <i class="glyphicon glyphicon-chevron-up" @click="upvote"></i>
-                <span class="label label-primary">{{ upvotes }}</span></a>
-            <a href="/pitch/{{pitch.id}}?downvotevote=1">
+                <span class="label label-primary"> upvote {{pitch.upvote }}</span></a>
+            <a href="/pitch/{{pitch.id}}?downvote=1">
                 <i class="glyphicon glyphicon-chevron-up" @click="downvote"></i>
-                <span class="label label-primary">{{ downvotes }}</span></a>
+                <span class="label label-primary"> downvote {{ pitch.downvote }}</span></a>
         </span>
     </div>
     <div>
@@ -26,6 +26,6 @@
         {% if current_user.is_authenticated %}
             {{ wtf.quick_form(comment_form) }}
         {%endif%}
-        {{macro.displayComments(comments)}}
+
     </div>
 {% endblock %}
