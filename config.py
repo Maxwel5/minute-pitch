@@ -1,6 +1,7 @@
 import os
 
 class Config:
+    UPLOADED_PHOTOS_DEST ='app/static/photos'
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:12345@localhost/pitches'
 
 class ProdConfig(Config):
