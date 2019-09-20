@@ -16,6 +16,8 @@ login_manager = LoginManager(app)
 login_manager.login_view = "auth.login"
 login_manager.session_protection = "strong"
 def create_app(config_name):
+    app = Flask(__name__)
+    configure_uploads(app,photos)
     app.config.from_object(config_options[config_name])
     from .main import main as main_blueprint
     from .auth import auth as auth_blueprint
