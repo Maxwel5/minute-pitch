@@ -1,7 +1,8 @@
 from flask import render_template,request,redirect,url_for,abort
 from flask_login import login_required,current_user
 from . import main
-from ..models import User,Pitch,Comment
+from ..models import User,Reviews
+# from ..models import User,Pitch,Comment
 from .. import db,photos
 from .forms import CommentForm,PitchForm,UpdateProfile
 
@@ -19,7 +20,7 @@ def index():
 # @login_required
 # def new_review(id)
 
-@main.route('/user/<uname>/update/pic',methods= ['POST'])
+@main.route('/user/<username>/update/pic',methods= ['POST'])
 @login_required
 def update_pic(username):
     user = User.query.filter_by(username = username).first()
