@@ -15,6 +15,9 @@ class ProdConfig(Config):
     SECRET_KEY=os.environ.get('SECRET_KEY')
     pass
 
+class TestConfig(Config):
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:12345@localhost/pitches_test'
+
 class DevConfig(Config):
 
     SECRET_KEY = 'JHFEIEWHGOIHWEOIUGHWEPIUHP'
@@ -23,5 +26,6 @@ class DevConfig(Config):
 
 config_options = {
     'development':DevConfig,
-    'production':ProdConfig
+    'production':ProdConfig,
+    'test':TestConfig
 }
