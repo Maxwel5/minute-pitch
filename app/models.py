@@ -10,6 +10,7 @@ class User(UserMixin, db.Model):
     firstname = db.Column(db.String(255))
     lastname = db.Column(db.String(255))
     email = db.Column(db.String(255), nullable=False, unique=True)
+    pass_secure = db.Column(db.String(255))
     password = db.Column(db.String(255), nullable=False)
     bio = db.Column(db.String(4800))
     profile_pic_path = db.Column(db.String)
@@ -51,6 +52,14 @@ class Pitch(db.Model):
     downvote = db.Column(db.Integer)
 
     comments = db.relationship('Comment',backref =  'pitch_id',lazy = "dynamic")
+
+    @property
+        def password(self):
+            raise AttributeError('You cannot read the password attribute')
+
+    @password.setter
+    def password(self, password):
+        self.pass_secure = generate_password_hash(password)
 
     def save_pitch(self):
         db.session.add(self)
