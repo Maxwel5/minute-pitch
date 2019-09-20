@@ -10,9 +10,9 @@
 {% endmacro %}
 
 {% macro displayPitches(comments_list) %}
-    {% for pitch in comments_list %}
+    {% for comment in comments_list %}
     <div class="card">
-        <large>{{comment.user.username}}</large>
+        <h5>{{comment.user.username}}</h5>
         <p>{{comment.comment}}</p>
     </div>
     {% endfor %}

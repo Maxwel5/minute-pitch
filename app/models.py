@@ -11,7 +11,6 @@ class User(UserMixin, db.Model):
     # lastname = db.Column(db.String(255))
     email = db.Column(db.String(255), index = True, nullable=False, unique=True)
     # role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
-    pass_secure = db.Column(db.String(255))
     password = db.Column(db.String(255), nullable=False)
     # password_hash = db.Column(db.String(255))
     bio = db.Column(db.String(4800))
@@ -45,7 +44,6 @@ class Pitch(db.Model):
     __tablename__ = 'pitches'
 
     id = db.Column(db.Integer,primary_key = True)
-    title = db.Column(db.String(255))
     pitch_title = db.Column(db.String(255))
     pitch_content = db.Column(db.String(800))
     category = db.Column(db.String(255))

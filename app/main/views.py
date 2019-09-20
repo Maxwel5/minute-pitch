@@ -1,11 +1,9 @@
 from flask import render_template,request,redirect,url_for,abort
 from flask_login import login_required,current_user
 from . import main
-from ..models import User,Reviews
-# from ..models import User,Pitch,Comment
+from ..models import User,Pitch,Comment
 from .. import db,photos
-from .forms import CommentForm,PitchForm,UpdateProfile,ReviewForm
-from app.models import User,Role
+from .forms import CommentForm,PitchForm,UpdateProfile
 
 @main.route('/')
 def index():
@@ -15,7 +13,7 @@ def index():
     bootcamp_pitches = Pitch.get_pitches('bootcamp')
     trip_pitches = Pitch.get_pitches('trip')
     sports_pitches = Pitch.get_pitches('sports')
-    return render_template('index.html', title=title, bootcamp = bootcamp_pitches, trip = trip_pitches, sports = sports_pitches)
+    return render_template('index.html',current_user=current_user, title=title, bootcamp = bootcamp_pitches, trip = trip_pitches, sports = sports_pitches)
 
 # @main.route('/movie/review/new/<int:id>', methods = ['GET','POST'])
 # @login_required
@@ -32,8 +30,10 @@ def update_pic(username):
         db.session.commit()
     return redirect(url_for('main.profile',username=username))
 
-@main.route('/user/<username>')
-def profile(username):
+@main.route('/user')
+
+def profile():
+    username = current_user.username
     user = User.query.filter_by(username = username).first()
     pitches_count = Pitch.count_pitches(username)
 
@@ -69,10 +69,10 @@ def new_pitch():
     pitch_form = PitchForm()
     if pitch_form.validate_on_submit():
         category = pitch_form.category.data
-        pitch = pitch_form.text.data
+        pitch = pitch_form.pitch.data
         title = pitch_form.title.data
 
-        new_pitch = Pitch(pitch_title=title,pitch_content=pitch,category=category,user=current_user,likes=0,dislikes=0)
+        new_pitch = Pitch(pitch_title=title,pitch_content=pitch,category=category,user=current_user,upvote=0,downvote=0)
 
         new_pitch.save_pitch()
         return redirect(url_for('.index'))
