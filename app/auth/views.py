@@ -20,13 +20,15 @@ def login():
     title = "Minute Pitch Login"
     if form.validate_on_submit():
         user = User.query.filter_by(email = form.email.data).first()
-        if user != None and form.password.data == user.password:
-            login_user(user)
+        if user != None and user.verify.password(form.password.data):
+            login_user(user,form.remember.data)
             return redirect(request.args.get('next') or url_for("main.index"))
-        else:
-            return render_template("authentication/login.html",login_form=form,title=title)
 
-    return render_template("authentication/login.html",login_form=form,title=title)
+        flash(Unknown username or password)
+
+    title = 'Login Pitches'
+
+    return render_template("authentication/login.html",form=form,title=title)
 
 @auth.route("/sign-up",methods=["GET","POST"])
 def signup():
@@ -36,7 +38,7 @@ def signup():
         user = User(email = form.email.data, username = form.username.data, password = form.password.data)
         # username = form.username.data
         # email = form.email.data
-
+.data == user.password:
         # user = User(username = username,email = email)
         # user.set_password(form.password.data)
 
