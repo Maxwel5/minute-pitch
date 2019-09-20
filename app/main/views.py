@@ -15,6 +15,10 @@ def index():
     sports_pitches = Pitch.get_pitches('sports')
     return render_template('index.html', title=title, bootcamp = bootcamp_pitches, trip = trip_pitches, sports = sports_pitches)
 
+# @main.route('/movie/review/new/<int:id>', methods = ['GET','POST'])
+# @login_required
+# def new_review(id)
+
 @main.route('/user/<uname>/update/pic',methods= ['POST'])
 @login_required
 def update_pic(username):

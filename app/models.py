@@ -6,12 +6,13 @@ class User(UserMixin, db.Model):
     __tablename__="users"
     
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(255), nullable=False, unique=True)
+    username = db.Column(db.String(255), index = True, nullable=False, unique=True)
     firstname = db.Column(db.String(255))
     lastname = db.Column(db.String(255))
-    email = db.Column(db.String(255), nullable=False, unique=True)
+    email = db.Column(db.String(255), index = True, nullable=False, unique=True)
     pass_secure = db.Column(db.String(255))
     password = db.Column(db.String(255), nullable=False)
+    # password_hash = db.Column(db.String(255))
     bio = db.Column(db.String(4800))
     profile_pic_path = db.Column(db.String)
     pitch = db.relationship('Pitch', backref='user', lazy='dynamic')
