@@ -32,11 +32,13 @@ def login():
 def signup():
     form = SignupForm()
     if form.validate_on_submit():
-        username = form.username.data
-        email = form.email.data
+        if form.validate_on_submit():
+        user = User(email = form.email.data, username = form.username.data, password = form.password.data)
+        # username = form.username.data
+        # email = form.email.data
 
-        user = User(username = username,email = email)
-        user.set_password(form.password.data)
+        # user = User(username = username,email = email)
+        # user.set_password(form.password.data)
 
         db.session.add(user)
         db.session.commit()
