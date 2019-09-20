@@ -54,8 +54,8 @@ class Pitch(db.Model):
     comments = db.relationship('Comment',backref =  'pitch_id',lazy = "dynamic")
 
     @property
-        def password(self):
-            raise AttributeError('The password attribute cannot be read')
+    def password(self):
+        raise AttributeError('The password attribute cannot be read')
 
     @password.setter
     def password(self, password):
