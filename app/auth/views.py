@@ -1,4 +1,3 @@
-# from flask  import render_template, request, redirect, url_for
 from flask  import render_template, request, redirect, url_for, flash
 from ..models import User
 from flask_login import login_user, logout_user, login_required
@@ -7,6 +6,7 @@ from app.models import User
 from .forms import LoginForm, SignupForm
 # from ..import db, main
 from ..import db
+from ..email import mail_message
 # from werkzeug.security import generate_password_hash,check_password_hash
 
 # @auth.route('/')
@@ -39,6 +39,12 @@ def signup():
 
         db.session.add(user)
         db.session.commit()
+
+        mail_message("Welcome to pitches","email/welcome_user",user.email,user=user)
+
+        return redirect(url_for('auth.login'))
+        title = "New Account"
+
 
     return render_template("authentication/signup.html", form = form)
 
