@@ -1,6 +1,7 @@
 import unittest
 from app.models import Pitch
 Pitch = Pitch
+from app import db
 
 class PitchTest(unittest.TestCase):
     def setUp(self):

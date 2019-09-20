@@ -1,5 +1,6 @@
 import unittest
 from app.models import user
+from app import db
 class UserModelTest(unittest.TestCase):
     def setUp(self):
         self.new_user = User(password = 'young')
